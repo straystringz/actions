@@ -1,8 +1,6 @@
-def check_parking_meter(time_parked, time_purchased):
-    noCharges = "no charges yet"
-    charged = "overtime charged"
+def add(a, b):
+    return a + b
 
-    if time_parked >= time_purchased:
-        return charged
-    else:
-        return noCharges
+def test_add():
+    assert add(1, 2) == 3
+    assert add(1, -1) == 0
