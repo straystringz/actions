@@ -1,22 +1,23 @@
+name: Remote Commands
+
 on:
   push:
     branches:
       - main
 
 jobs:
-  run_pull:
-  # - name: run pull
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
-    
-      - name: list directory
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_P_KEY }}
+
+      - name: Run Remote Commands
         run: |
-          mkdir -p ~/.ssh
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
-          ssh-add - <<< "${{ secrets.SSH_P_KEY }}"
-          "ls /"
+          ssh ${{ SSH_USER }}@${{ secrets.SSH_HOST }} "ls /"
