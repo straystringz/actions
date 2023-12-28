@@ -1,0 +1,14 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run_pull:
+    name: run pull
+    runs-on: ubuntu latest
+
+    steps:
+    - name: list directory
+      run: |
+       ssh -i ${ secrets.SSH_P_KEYS } ${ secrets.SSH_USER }@${ secrets.SSH_HOST } "ls ~/actions"
