@@ -15,4 +15,6 @@ jobs:
     
       - name: list directory
         run: |
-         ssh -i ${{ secrets.SSH_P_KEYS }} {{ secrets.SSH_HOST }} "ls ~/actions"
+         echo "${{ secrets.SSH_P_KEYS }}" > tstActions.pem
+         chmod 0400 tstActions.pem
+         ssh -i tstActions.pem {{ secrets.SSH_HOST }} "ls ~/actions"
