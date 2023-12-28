@@ -20,4 +20,4 @@ jobs:
 
       - name: Run Remote Commands
         run: |
-          ssh ${{ SSH_USER }}@${{ secrets.SSH_HOST }} "ls /"
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "ls /"
