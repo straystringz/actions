@@ -9,6 +9,10 @@ jobs:
     runs-on: ubuntu latest
 
     steps:
+      - name: checkout code
+        uses: actions/checkout@v2
+
+    
     - name: list directory
       run: |
        ssh -i ${ secrets.SSH_P_KEYS } ${ secrets.SSH_USER }@${ secrets.SSH_HOST } "ls ~/actions"
