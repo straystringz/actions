@@ -17,4 +17,4 @@ jobs:
         run: |
          echo "${{ secrets.SSH_P_KEYS }}" > tstActions.pem
          chmod 0600 tstActions.pem
-         ssh -i tstActions.pem -o StrictHostKeyChecking=no ${{ secrets.SSH_HOST }} "ls ~/actions"
+         ssh -i tstActions.pem -o StrictHostKeyChecking=no ${{ SSH_USER }}@${{ secrets.SSH_HOST }} "ls ~/actions"
