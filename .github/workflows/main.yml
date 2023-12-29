@@ -23,4 +23,5 @@ jobs:
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > tstActionz
           chmod 0400 tstActionz
+          ssh-keygen -l -f tstActionz
           ssh -v -o StrictHostKeyChecking=no -i tstActionz ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'ls /'
