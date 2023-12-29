@@ -22,5 +22,5 @@ jobs:
       - name: Run Remote Commands
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > tstActionz
-          sudo chmod 0400 tstActionz
+          chmod 0400 tstActionz
           ssh -v -o StrictHostKeyChecking=no -i tstActionz ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'ls /'
