@@ -22,4 +22,4 @@ jobs:
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > tstActionz.pem
           chmod 600 tstActionz.pem
-          ssh -o StrictHostKeyChecking=no -i tstActionz.pem ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'ls /'
+          ssh -v -o StrictHostKeyChecking=no -i tstActionz.pem ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'ls /'
