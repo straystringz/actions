@@ -19,15 +19,8 @@ jobs:
           distribution: 'adopt'
           java-version: '17'
 
-      # - name: Setup SSH
-      #   uses: webfactory/ssh-agent@v0.5.3
-      #   with:
-      #     ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
       - name: Run Remote Commands
         run: |
-          # mkdir -p /home/runner/.ssh/
-          # echo "${{ secrets.SSH_HOST }}" >> /home/runner/.ssh/known_hosts
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > tstActionz.pem
           sudo chmod 0400 tstActionz.pem
           ssh -v -o StrictHostKeyChecking=no -i tstActionz.pem ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'ls /'
