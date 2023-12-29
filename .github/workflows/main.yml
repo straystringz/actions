@@ -21,7 +21,7 @@ jobs:
 
       - name: Run Remote Commands
         run: |
-          echo ${{ secrets.SSH_PRIVATE_KEY }} > tstActionz.pem
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > tstActionz.pem
           chmod 0400 tstActionz.pem
           ssh-keygen -l -f tstActionz.pem
           ssh -v -o StrictHostKeyChecking=no -i tstActionz.pem ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'ls /'
