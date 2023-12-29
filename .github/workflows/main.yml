@@ -20,6 +20,8 @@ jobs:
 
       - name: Run Remote Commands
         run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > tstActionz.pem
-          chmod 600 tstActionz.pem
-          ssh -v -o StrictHostKeyChecking=no -i tstActionz.pem ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'ls /'
+          mkdir -p /home/runner/.ssh/
+          echo "${{ secrets.SSH_HOST }}" >> /home/runner/.ssh/known_hosts
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > /home/runner/.ssh/tstActionz.pem
+          chmod 600 /home/runner/.ssh/tstActionz.pem
+          ssh -v -o StrictHostKeyChecking=no -i /home/runner/.ssh/tstActionz.pem ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} 'ls /'
